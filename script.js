@@ -1,3 +1,36 @@
+// Define the Block class
+class Block {
+  constructor(c, x, y, s, r) {
+    this.c = c;
+    this.x = x;
+    this.y = y;
+    this.s = s;
+    this.r = r;
+  }
+
+  roundRect() {
+    pen.fillStyle = this.c;
+    pen.beginPath();
+    pen.moveTo(this.x + this.r, this.y);
+    pen.arcTo(this.x + this.s, this.y, this.x + this.s, this.y + this.s, this.r);
+    pen.arcTo(this.x + this.s, this.y + this.s, this.x, this.y + this.s, this.r);
+    pen.arcTo(this.x, this.y + this.s, this.x, this.y, this.r);
+    pen.arcTo(this.x, this.y, this.x + this.s, this.y, this.r);
+    pen.fill();
+  }
+
+  resize(s) {
+    this.s = s;
+    this.r = s / 10;
+  }
+
+  reposition(s1, s2) {
+    this.x = s1 * this.x;
+    this.y = s2 * this.y;
+  }
+}
+
+
 let game = document.getElementById("game");
 game.width = Math.min(0.75 * window.innerWidth, 0.75 * 8 * window.innerHeight / 4);
 game.height = Math.min(0.75 * window.innerHeight, 0.75 * 4 * window.innerWidth / 8);
